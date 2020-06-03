@@ -7,7 +7,7 @@
 import unittest
 import os
 import HTMLTestRunnerNew as HTMLTestRunner
-from class_22.UnitDemos import TestCases
+from page_testcase.testcase import page_case
 
 # 创建测试套件
 suite = unittest.TestSuite()
@@ -27,7 +27,7 @@ else:
 
 # 生成测试报告
 with open(report_file, 'wb') as report:
-    suite.addTest(unittest.TestLoader().loadTestsFromTestCase(TestCases))
+    suite.addTest(unittest.TestLoader().loadTestsFromTestCase(page_case))
     htmlrunner = HTMLTestRunner.HTMLTestRunner(stream=report, title=report_title, tester='枫', description=report_desc,
                                                verbosity=2)
     htmlrunner.run(suite)
