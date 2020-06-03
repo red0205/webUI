@@ -1,3 +1,27 @@
 -
-  name: feng2
-  keyword: zhx159753
+  search_goods: 手机
+  goods_xpath: //p[contains(@title, "苹果")]
+  goods_choose: //h1[contains(text(),"苹果")]
+  goods_option1: //li[@data-value="套餐一"]
+  goods_option2: //li[@data-value="银色"]
+  goods_option3: //li[@data-value="128G"]
+  goods_num: 10
+  check: //a[contains(text(),"苹果")]
+-
+  search_goods: 连衣裙
+  goods_xpath: //p[contains(@title,"裙子夏")]
+  goods_choose: //h1[contains(text(),"裙子夏")]
+  goods_option1: 无
+  goods_option2: //li[@data-value="粉色"]
+  goods_option3: //li[@data-value="S"]
+  goods_num: 10
+  check: //a[contains(text(),"裙子夏")]
+-
+  search_goods: 包
+  goods_xpath: //p[contains(@title, "纽芝兰")]
+  goods_choose: //h1[contains(text(),"纽芝兰")]
+  goods_option1: 无
+  goods_option2: 无
+  goods_option3: 无
+  goods_num: 10
+  check: //a[contains(text(),"纽芝兰")]

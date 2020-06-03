@@ -5,25 +5,34 @@
 # @File :testcase.py
 
 from ddt import ddt, file_data
-from class_23.pageobject.index_page import indexpage
+from pageobject.seacher_page import seacher_page
 import unittest
 
 
 @ddt
-class page_case(unittest.TestCase):
+class page_case(unittest.TestCase, seacher_page):
 
     def setUp(self) -> None:
-        self.Index = indexpage('cc', indexpage.url)
-        pass
+        # 打开浏览器并进入网站
+        self.project = seacher_page('cc', seacher_page.url)
+        # 登录及校验登录
+        self.project.sign_in('feng2', 'zhx159753')
 
     def tearDown(self) -> None:
-        pass
+        # 查看结果
+        self.project.quit()
 
     @file_data('para.yaml')
-    def test_case1(self, **info):
-        self.Index.choose()
-        self.Index.sign_in(info.get('name'), info.get('keyword'))
-        self.Index.choose_all()
+    def testcase_01(self, **data):
+        # 搜索商品
+        self.project.search(data.get('search_goods'), data.get('goods_xpath'))
+
+        # 选择商品规格并加入购物车
+        self.project.choose(data.get('goods_choose'), data.get('goods_option1'), data.get('goods_option2'),
+                            data.get('goods_option3'), data.get('goods_num'))
+
+        # 进入购物车查看商品
+        self.project.check(data.get('check'))
 
 
 if __name__ == '__main__':

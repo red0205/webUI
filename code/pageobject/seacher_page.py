@@ -4,18 +4,15 @@
 # @Email  :619251557@qq.com
 # @File :seacher_page.py
 
-from class_23.pagebase.page_base import pagebase
+from pageobject.login_page import login
 
 
-class seacher_page(pagebase):
-    url = 'http://39.98.138.157/shopxo/index.php'
+class seacher_page(login):
+    seacher_url = 'http://39.98.138.157/shopxo/index.php'
 
     # 搜索
-    def search(self, str1):
+    def search(self, str1, commodity):
         self.input('//input[@id="search-input"]', str1)
         self.click('//input[@id="ai-topsearch"]')
-
-
-if __name__ == '__main__':
-    Seacher = seacher_page('cc', seacher_page.url)
-    Seacher.search('手机')
+        self.wait(commodity, '搜索')
+        self.click(commodity)

@@ -55,6 +55,34 @@ class pagebase(object):
     def wait(self, xpath, step):
         WebDriverWait(self.driver, 10, 0.5).until(lambda e1: self.get_xpath(xpath), message=step+'失败')
 
+    # 选择商品规格并加入购物车
+    def choose(self, commodity, meal, color, size, num):
+        self.switch()
+        self.wait(commodity, '进入商品页面')
+        self.t1 = self.get_xpath(commodity).text
+        if meal != '无':
+            self.click(meal)
+        if color != '无':
+            self.click(color)
+        if size != '无':
+            self.click(size)
+            self.input('//input[@id="text_box"]', num)
+            self.click('//button[@title="加入购物车"]')
+
+    # 进入购物车查看商品
+    def check(self, commodity):
+        self.click('//span[text()="购物车"]')
+        self.wait('//button[text()="结算"]', '进入购物车')
+        self.t2 = self.get_xpath(commodity).text
+        self.result(self.t1, self.t2)
+
+    # 结果判断
+    def result(self, t1, t2):
+        if t1 == t2:
+            print('商品加入购物车成功')
+        else:
+            print('商品加入购物车失败')
+
     # 切换页面
     def switch(self):
         handles = self.driver.window_handles
