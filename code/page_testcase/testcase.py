@@ -33,3 +33,7 @@ class page_case(unittest.TestCase, seacher_page):
 
         # 进入购物车查看商品
         self.project.check(data.get('check'))
+
+
+if __name__ == '__main__':
+    unittest.main()
